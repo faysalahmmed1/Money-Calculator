@@ -1,45 +1,52 @@
+function ProductCost(cost) {
+    const Cost = document.getElementById(cost);
+    const InputCost = Cost.value;
+    const NewInputCost = parseFloat(InputCost);
+    return NewInputCost;
+};
+
+function UpdateBalance(Balance, amount) {
+    const InputBalance = document.getElementById(Balance);
+    const NewBalance = Income - amount;
+    InputBalance.innerText = NewBalance;
+}
+
 document.getElementById('Total-cost-button').addEventListener('click', function () {
 
     //Food Cost
-    const FoodCost = document.getElementById('food-cost');
-    const InputFoodCost = FoodCost.value;
-    const NewInputFoodCost = parseFloat(InputFoodCost) || 0;
+    const foodCost = ProductCost('food-cost');
 
     // Rent Cost 
-    const RentCost = document.getElementById('rent-cost');
-    const InputRentCost = RentCost.value;
-    const NewInputRentCost = parseFloat(InputRentCost) || 0;
+    const RentCost = ProductCost('rent-cost');
 
     // Clothes Cost
-    const ClothesCost = document.getElementById('clothes-cost');
-    const InputClothesCost = ClothesCost.value;
-    const NewInputClothesCost = parseFloat(InputClothesCost) || 0;
+    const ClotheCost = ProductCost('clothes-cost');
 
     //Total Expenses
-    const NewTotalClothesCost = NewInputFoodCost + NewInputRentCost + NewInputClothesCost;
+    const NewTotalClothesCost = foodCost + RentCost + ClotheCost;
     const TotalClothesCost = document.getElementById('total-expenses');
     TotalClothesCost.innerText = NewTotalClothesCost;
 
     // Income
-    const Income = document.getElementById('Income');
-    const InputIncome = Income.value;
-    const NewInputIncome = parseFloat(InputIncome) || 0;
+    const Income = ProductCost('Income')
 
     //Balance Total  
     const TotalBalance = document.getElementById('Balance-total');
-    const NewBalance = NewInputIncome - NewTotalClothesCost;
+    const NewBalance = Income - NewTotalClothesCost;
     TotalBalance.innerText = NewBalance;
+
 
 
     // Save Amount Element
     const SaveAmountElement = document.getElementById('save-amount');
-    const SaveAmount = 0.2 * NewInputIncome;
+    const SaveAmount = 0.2 * Income;
     SaveAmountElement.innerText = SaveAmount;
 
     //Remaining Balance
     const RemainingBalance = document.getElementById('remaining-Balance');
     const TotalRemaininBalance = NewBalance - SaveAmount;
     RemainingBalance.innerText = TotalRemaininBalance;
+
 });
 
 
